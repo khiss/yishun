@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
-@Table(name = "pucharse_order")
+@Table(name = "purchase_order")
 @NamedQueries({
     @NamedQuery(
             name = "PurchaseOrder.findByCustomerId",
@@ -37,7 +37,7 @@ public class PurchaseOrder {
     @Id @Column(name="order_num")
     private Integer orderNum;
     
-    @Column(name="product_num")
+    @Column(name="product_id")
     private Integer productId;
     
     private Integer quantity;
@@ -56,6 +56,9 @@ public class PurchaseOrder {
     @Column(name="freight_company")
     private String freightCompany;
     
+    // Many "PurchaseOrder" to One "Customer".
+    // The one is many is the relationship owner.
+    // Thus, need to define the JoinColumn
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName="customer_id")
     private Customer customer;

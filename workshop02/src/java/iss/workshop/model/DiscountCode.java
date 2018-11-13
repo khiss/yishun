@@ -24,7 +24,7 @@ public class DiscountCode {
     
     public enum Code { H, L, M, N }
     
-    @Id @Column(name="dicountCode")
+    @Id @Column(name="dicount_code")
     @Enumerated(EnumType.STRING)
     private Code discountCode;
     

@@ -33,10 +33,10 @@ public class PurchaseOrderServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // super.doGet(req, resp); //To change body of generated methods, choose Tools | Templates.
         
-        Integer cust_id = Integer.parseInt(req.getParameter("cust_id"));
+        Integer cust_id = Integer.parseInt(req.getParameter("custId"));
         
         TypedQuery<PurchaseOrder> query = em.createNamedQuery(
-                "PurchaseOrder.dinfByCustomerId", PurchaseOrder.class);
+                "PurchaseOrder.findByCustomerId", PurchaseOrder.class);
         
         query.setParameter("custId", cust_id);
         
