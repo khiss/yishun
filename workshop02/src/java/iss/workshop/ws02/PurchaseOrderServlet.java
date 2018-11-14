@@ -51,7 +51,7 @@ public class PurchaseOrderServlet extends HttpServlet {
         
         try (PrintWriter pw = resp.getWriter())
         {
-            pw.print(builder.build().toString());
+            pw.print(builder.build());
         }
     }
 }

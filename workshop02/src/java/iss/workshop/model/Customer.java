@@ -6,6 +6,9 @@
 package iss.workshop.model;
 
 import java.util.List;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -148,5 +151,21 @@ public class Customer {
         this.purchaseOrders = purchaseOrders;
     }
     
-    
+    public JsonObject toJson()
+    {
+        JsonObjectBuilder builder = Json.createObjectBuilder();
+        
+        builder.add("customerId", customerId)
+                .add("zip", zip)
+                .add("name", name)
+                .add("addressline1", addressline1)
+                .add("addressline2", addressline2)
+                .add("city", city)
+                .add("state", state)
+                .add("phone", phone)
+                .add("fax", fax)
+                .add("email", email);
+                
+        return builder.build();
+    }
 }
