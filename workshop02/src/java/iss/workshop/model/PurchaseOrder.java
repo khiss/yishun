@@ -133,7 +133,11 @@ public class PurchaseOrder {
         
         builder.add("orderNum", orderNum)
                 .add("productId", productId)
-                .add("productId", productId);
+                .add("quantity", quantity)
+                .add("shippingCost", shippingCost)
+                .add("shippingDate", shippingDate.toString())
+                .add("salesDate", salesDate.toString())
+                .add("freightCompany", freightCompany);
                 
         return builder.build();
     }
