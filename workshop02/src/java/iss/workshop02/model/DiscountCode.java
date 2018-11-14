@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package iss.workshop.model;
+package iss.workshop02.model;
 
 import java.util.List;
 import javax.persistence.Column;
@@ -24,13 +24,13 @@ public class DiscountCode {
     
     public enum Code { H, L, M, N }
     
-    @Id @Column(name="dicount_code")
+    @Id @Column(name="discount_code")
     @Enumerated(EnumType.STRING)
     private Code discountCode;
     
     private Float rate;
     
-    @OneToMany(mappedBy="dicountCode")
+    @OneToMany(mappedBy="discountCode")
     private List<Customer> customer;
 
     public Code getDiscountCode() {

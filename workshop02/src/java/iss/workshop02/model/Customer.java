@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package iss.workshop.model;
+package iss.workshop02.model;
 
 import java.util.List;
 import javax.json.Json;
@@ -42,7 +42,7 @@ public class Customer {
     
     @ManyToOne
     @JoinColumn(name = "discount_code", referencedColumnName="discount_code")
-    private DiscountCode dicountCode;
+    private DiscountCode discountCode;
 
     @OneToMany(mappedBy = "customer")
     private List<PurchaseOrder> purchaseOrders;
@@ -135,12 +135,12 @@ public class Customer {
         this.creditLimt = creditLimt;
     }
 
-    public DiscountCode getDicountCode() {
-        return dicountCode;
+    public DiscountCode getDiscountCode() {
+        return discountCode;
     }
 
-    public void setDicountCode(DiscountCode dicountCode) {
-        this.dicountCode = dicountCode;
+    public void setDiscountCode(DiscountCode discountCode) {
+        this.discountCode = discountCode;
     }
 
     public List<PurchaseOrder> getPurchaseOrders() {

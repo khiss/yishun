@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package iss.workshop.model;
+package iss.workshop02.model;
 
 import java.util.Date;
 import javax.json.Json;

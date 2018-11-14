@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package iss.workshop.ws02;
+package iss.workshop02.app;
 
-import iss.workshop.model.PurchaseOrder;
+import iss.workshop02.model.PurchaseOrder;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
+import javax.json.JsonObjectBuilder;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -42,12 +43,18 @@ public class PurchaseOrderServlet extends HttpServlet {
         
         List<PurchaseOrder> result = query.getResultList();
         
-        JsonArrayBuilder builder = Json.createArrayBuilder();
+        JsonObjectBuilder builder = Json.createObjectBuilder();
+        
+        builder.add("Number of POs", result.size());
+        
+        JsonArrayBuilder builder_pos = Json.createArrayBuilder();
         
         for (PurchaseOrder po: result)
         {
-            builder.add(po.toJson());
+            builder_pos.add(po.toJson());
         }
+        
+        builder.add("purcahse orders", builder_pos);
         
         try (PrintWriter pw = resp.getWriter())
         {
