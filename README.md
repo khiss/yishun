@@ -23,6 +23,14 @@ curl "http://localhost:8080/workshop02/purchaseOrder?custId=1"
 
 # Workshop 03
 
+Retrieve customer record by customer ID
+
+curl "http://localhost:8080/workshop03/customer?CustomerId=1"
+
+Create new Customer
+
+
+
 # Workshop 04
 curl -H "Accept: application/json" "http://localhost:8080/workshop04/api/customer/1"
 
