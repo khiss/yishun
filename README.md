@@ -11,6 +11,8 @@ Examples
 curl "http://localhost:8080/workshop01/weather?cityName=Singapore"
 
 # Workshop 02
+Retrieve customer record
+http://localhost:8080/workshop02/customer-sql?cust_id=1
 
 # Workshop 03
 
