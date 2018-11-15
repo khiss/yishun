@@ -12,3 +12,5 @@ curl "http://localhost:8080/workshop01/weather?cityName=Singapore"
 
 # Workshop 04
 curl -H "Accept: application/json" "http://localhost:8080/workshop04/api/customer/1"
+
+curl -H "Accept: application/json" http://localhost:8080/workshop04/api/customer/async/1
