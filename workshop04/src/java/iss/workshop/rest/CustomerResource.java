@@ -40,7 +40,6 @@ public class CustomerResource {
         
         try
         {
-            System.out.print("Hello " + custId);
             opt = customerBean.findByCustomerId(custId);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerResource.class.getName()).log(Level.SEVERE, null, ex);
@@ -49,6 +48,7 @@ public class CustomerResource {
                     .add("error", ex.getMessage())
                     .build();
             
+            // Error 406, 500
             return Response.serverError().entity(error).build();
         }
         
