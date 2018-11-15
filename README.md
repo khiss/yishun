@@ -29,7 +29,7 @@ curl "http://localhost:8080/workshop03/customer?CustomerId=1"
 
 Create new Customer
 
-curl -d "CustomerId=1033&name=test&addressline1=one&addressline2=two&city=Singapore&state=sg&zip=85638&phone=12345678&fax=123456789&email=xyz&creditLimt=123&discountCode=H" http://localhost:8080/workshop03/customer
+curl -d "CustomerId=1033&name=test&addressline1=one&addressline2=two&city=Singapore&state=sg&zip=85638&phone=12345678&fax=123456789&email=xyz&creditLimt=123&discountCode=H" "http://localhost:8080/workshop03/customer"
 
 # Workshop 04
 curl -H "Accept: application/json" "http://localhost:8080/workshop04/api/customer/1"
