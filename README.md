@@ -8,6 +8,8 @@ https://github.com/chukmunnlee/beauj_nov12
 Examples
 
 # Workshop 01
+Query Weather
+
 curl "http://localhost:8080/workshop01/weather?cityName=Singapore"
 
 # Workshop 02
