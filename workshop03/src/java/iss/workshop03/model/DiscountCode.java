@@ -6,7 +6,6 @@
 
 package iss.workshop03.model;
 
-import iss.workshop03.model.Customer;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,6 +31,9 @@ public class DiscountCode {
     
     private Float rate;
     
+    // One "DiscountCode" to Many "Customer".
+    // Thus, "DiscountCode" is NOT the relationship owner.
+    // Need to add "mappedBy".
     @OneToMany(mappedBy="discountCode")
     private List<Customer> customer;
 

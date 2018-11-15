@@ -39,10 +39,16 @@ public class Customer {
     @Column(name = "credit_limit")
     private Integer creditLimt;
     
+    // Many "Customer" to One "DiscountCode".
+    // The one is many is the relationship owner.
+    // Thus, need to define the JoinColumn
     @ManyToOne
     @JoinColumn(name = "discount_code", referencedColumnName="discount_code")
     private DiscountCode discountCode;
 
+    // One "Customer" to Many "PurchaseOrder".
+    // Thus, "Customer" is NOT the relationship owner.
+    // Need to add "mappedBy".
     @OneToMany(mappedBy = "customer")
     private List<PurchaseOrder> purchaseOrders;
 

@@ -37,7 +37,7 @@ public class CustomerBean {
         DiscountCode code = em.find(DiscountCode.class, c.getDiscountCode().getDiscountCode());
         
         if (null == code)
-            throw new CustomerException("Discount Code Not Found");
+            throw new CustomerException("Discount Code Not Found !!!");
             
         c.setDiscountCode(code);
             

@@ -45,7 +45,6 @@ public class CustonmerServlet extends HttpServlet {
         customer.setPhone(req.getParameter("phone"));
         customer.setFax(req.getParameter("fax"));
         customer.setEmail(req.getParameter("email"));
-        // customer.setDiscountCode(req.getParameter("email"));
         
         DiscountCode dc = new DiscountCode();
         dc.setDiscountCode(DiscountCode.Code.valueOf(req.getParameter("discountCode")));
@@ -60,34 +59,34 @@ public class CustonmerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // super.doPost(req, resp); //To change body of generated methods, choose Tools | Templates.
         
-        String html = "";
-                
         Integer customerId = Integer.parseInt(req.getParameter("CustomerId"));
         
         Optional<Customer> opt = customerBean.findByCustomerId(customerId);
         
         if (opt.isPresent())
         {
+            // There is already an existing customer ID.
+            // Cannot create the requested customer with the supplied customer ID.
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             resp.setContentType("text/plain");
         
             try (PrintWriter pw = resp.getWriter())
             {
-               html += "CustomerId: " + customerId + " exists.";
-
-               pw.print(html);
+               pw.print("CustomerId: " + customerId + " exists.");
             }
            
             return;
         }
         
+        // The user supplied customer ID does not exist.
+        // Go ahead to create the customer with the user supplied customer ID.
         Customer customer = createCustomer(req);
         
         try {
             customerBean.addNewCustomer(customer);
-            
-            // customerBean.addNewCustomer(c);
         } catch (CustomerException ex) {
+            // An exception has been thrown.
+            // It means the transaction failed.
             Logger.getLogger(CustonmerServlet.class.getName()).log(Level.SEVERE, null, ex);
             
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -95,16 +94,17 @@ public class CustonmerServlet extends HttpServlet {
 
             try (PrintWriter pw = resp.getWriter())
             {
-               pw.print("Failed");
+               pw.print("Error : Failed to add customer !!!");
             }
         }
         
+        // The customer has been added successfully.
         resp.setStatus(HttpServletResponse.SC_OK);
         resp.setContentType("text/plain");
         
         try (PrintWriter pw = resp.getWriter())
         {
-           pw.print("Added");
+           pw.print("Custonmer " + customer.getCustomerId() + " has been added successfully.");
         }
     }
 
@@ -112,26 +112,25 @@ public class CustonmerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // super.doGet(req, resp); //To change body of generated methods, choose Tools | Templates.
         
-        String html = "";
-                
         Integer customerId = Integer.parseInt(req.getParameter("CustomerId"));
         
         Optional<Customer> opt = customerBean.findByCustomerId(customerId);
         
         if (!opt.isPresent())
         {
+            // The customer with the user supplied customer ID cannot be found.
             resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            resp.setContentType("text/plain");
+            resp.setContentType("text/html");
         
             try (PrintWriter pw = resp.getWriter())
             {
-               html += "CustomerId: " + customerId + " does not exists.";
-
-               pw.print(html);
+               pw.print("CustomerId: " + customerId + " is <strong>NOT</strong> found.");
             }
            
             return;
         }
+        
+        // The customer with the user supplied customer ID has been found.
         
         Customer customer = opt.get();
         
@@ -141,9 +140,7 @@ public class CustonmerServlet extends HttpServlet {
         
         try (PrintWriter pw = resp.getWriter())
         {
-           html += customer.toJson();
-           
-           pw.print(html);
+           pw.print(customer.toJson());
         }
     }
 }

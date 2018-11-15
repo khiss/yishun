@@ -5,7 +5,6 @@
  */
 package iss.workshop03.model;
 
-import iss.workshop03.model.Customer;
 import java.util.Date;
 import javax.json.Json;
 import javax.json.JsonObject;
